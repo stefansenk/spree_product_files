@@ -1,6 +1,8 @@
 Spree Product Files
 ===================
 
+[![Build Status](https://travis-ci.org/stefansenk/spree_product_files.svg?branch=master)](https://travis-ci.org/stefansenk/spree_product_files)
+
 Allows files to be uploaded to a product. E.g. PDF data files.
 
 ## Installation
