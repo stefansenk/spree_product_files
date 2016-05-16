@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 3.1.0.rc1'
+  s.add_dependency 'paperclip', '~> 4.2.0'
 
   s.add_development_dependency 'capybara', '~> 2.6'
   s.add_development_dependency 'coffee-rails'

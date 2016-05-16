@@ -1,0 +1,7 @@
+<ul class="product_files">
+  <% @product.product_files.each do |product_file| %>
+    <li>
+      <%= link_to product_file.alt, product_file.attachment.url %>
+    </li>
+  <% end %>
+</ul>

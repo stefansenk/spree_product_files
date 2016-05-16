@@ -1,0 +1,7 @@
+
+en-GB:
+  spree:
+    product_file: 'File'
+    product_files: 'Files'
+    new_product_file: 'New File'
+    no_product_files: 'No Files'

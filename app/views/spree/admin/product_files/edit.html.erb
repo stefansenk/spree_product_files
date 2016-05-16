@@ -1,0 +1,29 @@
+<%= render partial: 'spree/admin/shared/product_tabs', locals: { current: :product_files } %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @product_file } %>
+
+<%= form_for [:admin, @product, @product_file], html: { multipart: true } do |f| %>
+  <div data-hook="edit_product_file" class="panel panel-default">
+    <div class="panel-heading">
+      <h1 class="panel-title">
+        <%= @product_file.attachment_file_name %>
+      </h1>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <div class="col-md-3 text-center">
+          <%= link_to @product_file.attachment_file_name, @product_file.attachment.url %>
+        </div>
+        <div class="col-md-9">
+          <%= render partial: 'form', locals: { f: f } %>
+        </div>
+
+        <div class="form-actions" data-hook="buttons">
+          <%= button Spree.t('actions.update'), 'save' %>
+          <span class="or"><%= Spree.t(:or) %></span>
+          <%= button_link_to Spree.t('actions.cancel'), spree.admin_product_product_files_url(@product), id: 'cancel_link', icon: 'delete' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

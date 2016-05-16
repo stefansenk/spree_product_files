@@ -1,0 +1,3 @@
+<li<%== ' class="active"' if current == :product_files %>>
+  <%= link_to_with_icon 'file', Spree.t(:product_files), admin_product_product_files_url(@product) %>
+</li>
