@@ -31,6 +31,17 @@ describe "Product Files", type: :feature, js: true do
       end
       expect(page).not_to have_content("data file 1")
     end
+
+    it "should require the file to exist" do
+      Spree::ProductFile.attachment_definitions[:attachment].delete :storage
+      create(:product)
+      visit spree.admin_products_path
+      click_icon(:edit)
+      click_link "Files"
+      click_link "new_product_file_link"
+      click_button "Create"
+      expect(page).to have_content("Attachment can't be blank")
+    end
   end
 
 

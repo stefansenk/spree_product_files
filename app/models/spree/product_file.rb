@@ -1,6 +1,4 @@
 class Spree::ProductFile < Spree::Asset
-  # validates_attachment_presence :attachment
-
   # attr_accessible :alt, :attachment, :position, :viewable_type, :viewable_id
 
   has_attached_file :attachment,
@@ -9,10 +7,9 @@ class Spree::ProductFile < Spree::Asset
 
   do_not_validate_attachment_file_type :attachment
 
-  # def display
-  #   return alt unless alt.blank?
-  #   attachment_file_name
-  # end
+  def display_name
+    alt.blank? ? attachment_file_name : alt
+  end
 
 
   # validate :no_attachment_errors
@@ -24,8 +21,7 @@ class Spree::ProductFile < Spree::Asset
   #                   path: ':rails_root/public/spree/products/:id/:style/:basename.:extension',
   #                   convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
 
-  # validates_attachment :attachment,
-  #   :presence => true,
+  validates_attachment :attachment, presence: true
   #   :content_type => { :content_type => %w(image/jpeg image/jpg image/png image/gif) }
 
 

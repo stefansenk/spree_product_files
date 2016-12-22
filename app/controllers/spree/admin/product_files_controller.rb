@@ -6,6 +6,7 @@ module Spree
 
       create.before :set_viewable
       update.before :set_viewable
+      create.fails :set_flash_error_messages_from_object
 
       private
 
@@ -40,6 +41,10 @@ module Spree
         [
           variants_including_master: { option_values: :option_type, product_files: :viewable }
         ]
+      end
+
+      def set_flash_error_messages_from_object
+        flash[:error] = @object.errors.full_messages.join(', ')
       end
 
     end
