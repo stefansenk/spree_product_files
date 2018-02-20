@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Spree::ProductFile do
   before do
-    @product = FactoryGirl.create :product
-    @product_file = FactoryGirl.create :product_file, viewable: @product
+    @product = FactoryBot.create :product
+    @product_file = FactoryBot.create :product_file, viewable: @product
   end
   it "should be valid" do
     expect(@product_file).to be_valid

@@ -52,4 +52,4 @@ If you'd like to contribute, please take a look at the
 [instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
 pull request.
 
-Copyright (c) 2016 Stefan Senk, released under the New BSD License
+Copyright (c) 2018 Stefan Senk, released under the New BSD License

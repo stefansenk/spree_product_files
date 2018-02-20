@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Product Files", type: :feature, js: true do
   stub_authorization!
 
-  let(:file_path) { Spree::Core::Engine.root + "spec/fixtures" + 'microdata.html' }
+  let(:file_path) { Spree::Core::Engine.root + "spec/fixtures/thinking-cat.jpg" }
 
   context "uploading, editing, and deleting a product file" do
     it "should allow an admin to upload and edit an product file for a product" do
@@ -18,7 +18,7 @@ describe "Product Files", type: :feature, js: true do
       attach_file('product_file_attachment', file_path)
       click_button "Create"
       expect(page).to have_content("successfully created!")
-      expect(page).to have_content('microdata.html')
+      expect(page).to have_content('thinking-cat.jpg')
 
       click_icon(:edit)
       fill_in "product_file_alt", with: "data file 1"

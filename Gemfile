@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 # Provides basic authentication functionality for testing parts of your engine
 # gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: 'master'
 
-gem 'spree', '~> 3.1.0.rc1'
-gem 'spree_auth_devise', '~> 3.1.0.rc1'
+gem 'spree', '~> 3.4.4'
+gem 'spree_auth_devise', '~> 3.3'
+gem 'rails-controller-testing'
 
 gemspec

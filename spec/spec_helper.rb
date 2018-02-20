@@ -18,6 +18,7 @@ require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
+require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -34,7 +35,13 @@ require 'spree/testing_support/url_helpers'
 require 'spree_product_files/factories'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
+
+  Capybara.javascript_driver = :poltergeist
+
+  Capybara.register_driver(:poltergeist) do |app|
+    Capybara::Poltergeist::Driver.new app, js_errors: true, timeout: 60
+  end
 
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
