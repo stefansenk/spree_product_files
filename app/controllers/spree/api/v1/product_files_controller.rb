@@ -1,5 +1,3 @@
-require 'spree/api/v1/product_files_helper'
-
 module Spree
   module Api
     module V1
