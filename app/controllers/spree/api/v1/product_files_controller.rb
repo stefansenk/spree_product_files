@@ -3,7 +3,7 @@ module Spree
     module V1
       class ProductFilesController < Spree::Api::BaseController
 
-        helper Spree::Api::V1::ProductFilesHelper
+        helper ::SpreeApiV1ProductFilesHelper
 
         def index
           @product_files = scope.product_files.accessible_by(current_ability, :read)

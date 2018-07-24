@@ -134,22 +134,5 @@ module Spree
       end
     end
 
-    context "as a non-admin" do
-      it "cannot create an product_file" do
-        api_post :create, :product_id => product.id
-        assert_unauthorized!
-      end
-
-      it "cannot update an product_file" do
-        api_put :update, :id => 1, :product_id => product.id
-        assert_not_found!
-      end
-
-      it "cannot delete an product_file" do
-        api_delete :destroy, :id => 1, :product_id => product.id
-        assert_not_found!
-      end
-    end
-
   end
 end
