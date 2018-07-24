@@ -33,6 +33,9 @@ require 'spree/testing_support/url_helpers'
 # Requires factories defined in lib/spree_product_files/factories.rb
 require 'spree_product_files/factories'
 
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
