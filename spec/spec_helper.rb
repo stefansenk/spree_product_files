@@ -7,18 +7,16 @@ SimpleCov.start do
   add_group 'Mailers', 'app/mailers'
   add_group 'Models', 'app/models'
   add_group 'Views', 'app/views'
-  add_group 'Libraries', 'lib'
+  add_group 'Libraries', 'lib/spree'
 end
 
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+require File.expand_path('../dummy/config/environment.rb', __FILE__)
 
 require 'rspec/rails'
-require 'database_cleaner'
 require 'ffaker'
-require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -31,18 +29,9 @@ require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 
-# Requires factories defined in lib/spree_product_files/factories.rb
 require 'spree_product_files/factories'
 
 RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
-
-  Capybara.javascript_driver = :poltergeist
-
-  Capybara.register_driver(:poltergeist) do |app|
-    Capybara::Poltergeist::Driver.new app, js_errors: true, timeout: 60
-  end
-
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
 
@@ -69,6 +58,7 @@ RSpec.configure do |config|
   # config.mock_with :rr
   config.mock_with :rspec
   config.color = true
+  config.default_formatter = 'doc'
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -76,25 +66,10 @@ RSpec.configure do |config|
   # Capybara javascript drivers require transactional fixtures set to false, and we use DatabaseCleaner
   # to cleanup after each test instead.  Without transactional fixtures set to false the records created
   # to setup a test will be unavailable to the browser, which runs under a separate server instance.
-  config.use_transactional_fixtures = false
-
-  # Ensure Suite is set to use transactions for speed.
-  config.before :suite do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with :truncation
-  end
-
-  # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
-  config.before :each do
-    DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
-    DatabaseCleaner.start
-  end
-
-  # After each spec clean the database.
-  config.after :each do
-    DatabaseCleaner.clean
-  end
+  config.use_transactional_fixtures = true
 
   config.fail_fast = ENV['FAIL_FAST'] || false
-  config.order = "random"
+  config.order = 'random'
+
+  config.extend Spree::TestingSupport::AuthorizationHelpers::Request, type: :system
 end

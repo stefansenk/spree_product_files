@@ -5,6 +5,9 @@ FactoryBot.define do
   # require 'spree_product_files/factories'
 
   factory :product_file, class: Spree::ProductFile do
-    attachment { File.new(Spree::Core::Engine.root + "spec/fixtures" + 'thinking-cat.jpg') }
+    before(:create) do |product_file|
+      product_file.attachment.attach(io: File.new(Spree::Core::Engine.root + 'spec/fixtures' + 'thinking-cat.jpg'), filename: 'thinking-cat.jpg')
+    end
   end
+
 end

@@ -12,7 +12,8 @@
     <div class="panel-body">
       <div class="form-group">
         <div class="col-md-3 text-center">
-          <%= link_to @product_file.attachment_file_name, @product_file.attachment.url %>
+          <%= link_to @product_file.attachment.filename, main_app.rails_blob_path(@product_file.attachment, disposition: "attachment") %>
+
         </div>
         <div class="col-md-9">
           <%= render partial: 'form', locals: { f: f } %>

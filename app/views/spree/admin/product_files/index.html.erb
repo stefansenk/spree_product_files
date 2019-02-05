@@ -32,7 +32,7 @@
             <% end %>
           </td>
           <td class="product_file">
-            <%= link_to product_file.attachment_file_name, product_file.attachment.url %>
+            <%= link_to product_file.attachment.filename, main_app.rails_blob_path(product_file.attachment, disposition: "attachment") %>
           </td>
           <td><%= product_file.alt %></td>
           <td class="actions actions-2 text-right">

@@ -7,3 +7,10 @@ en:
     product_files: 'Files'
     new_product_file: 'New File'
     no_product_files: 'No Files'
+  activerecord:
+    errors:
+      models:
+        spree/product_file:
+          attributes:
+            attachment:
+              attachment_must_be_present: must be present
