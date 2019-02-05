@@ -72,4 +72,8 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.extend Spree::TestingSupport::AuthorizationHelpers::Request, type: :system
+
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :chrome, options: { args: ["headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage", "window-size=1920,1080"] }
+  end
 end

@@ -15,6 +15,8 @@ module Spree
           respond_with(@product_file)
         end
 
+        def new; end
+
         def create
           authorize! :create, ProductFile
           @product_file = scope.product_files.new(product_file_params)
