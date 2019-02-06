@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 module Spree
-  describe Api::V1::ProductFilesController, :type => :controller do
+  describe Api::V1::ProductFilesController do
+
+    # Work around for failing .v1.rabl templates - TODO Can this be removed?
+    before do
+      ActionView::Template.register_template_handler('v1.rabl', ActionView::Template::Handlers::Rabl)
+    end
 
     # From  spree/api/spec/support/controller_hacks.rb
     def api_get(action, params={}, session=nil, flash=nil)
@@ -69,7 +74,7 @@ module Spree
         expect(json_response["required_attributes"]).to be_empty
       end
 
-      xit "can upload a new product_file for a product" do
+      it "can upload a new product_file for a product" do
         expect do
           api_post :create,
                    :product_file => { :attachment => upload_product_file('thinking-cat.jpg'),
@@ -81,7 +86,7 @@ module Spree
         end.to change(ProductFile, :count).by(1)
       end
 
-      xit "can't upload a new product_file for a product without attachment" do
+      it "can't upload a new product_file for a product without attachment" do
         api_post :create,
                  product_file: { viewable_type: 'Spree::Product',
                           viewable_id: product.to_param
@@ -93,33 +98,33 @@ module Spree
       context "working with an existing product_file" do
         let!(:product_product_file) { product.product_files.create!(:attachment => upload_product_file('thinking-cat.jpg')) }
 
-        xit "can get a single product product_file" do
+        it "can get a single product product_file" do
           api_get :show, :id => product_product_file.id, :product_id => product.id
           expect(response.status).to eq(200)
           attributes.each{|attribute| expect(json_response.keys).to include(attribute.to_s) }
         end
 
-        xit "can get a single product product_file" do
+        it "can get a single product product_file" do
           api_get :show, :id => product_product_file.id, :product_id => product.id
           expect(response.status).to eq(200)
           attributes.each{|attribute| expect(json_response.keys).to include(attribute.to_s) }
         end
 
-        xit "can get a list of product product_files" do
+        it "can get a list of product product_files" do
           api_get :index, :product_id => product.id
           expect(response.status).to eq(200)
           expect(json_response).to have_key("product_files")
           attributes.each{|attribute| expect(json_response["product_files"].first.keys).to include(attribute.to_s) }
         end
 
-        xit "can get a list of product product_files" do
+        it "can get a list of product product_files" do
           api_get :index, :product_id => product.id
           expect(response.status).to eq(200)
           expect(json_response).to have_key("product_files")
           attributes.each{|attribute| expect(json_response["product_files"].first.keys).to include(attribute.to_s) }
         end
 
-        xit "can update product_file data" do
+        it "can update product_file data" do
           expect(product_product_file.position).to eq(1)
           api_post :update, :product_file => { :position => 2 }, :id => product_product_file.id, :product_id => product.id
           expect(response.status).to eq(200)
@@ -127,14 +132,13 @@ module Spree
           expect(product_product_file.reload.position).to eq(2)
         end
 
-        xit "can't update a product_file without attachment" do
+        it "can't update a product_file without attachment" do
           api_post :update,
-                   product_file: { attachment: nil },
                    id: product_product_file.id, product_id: product.id
           expect(response.status).to eq(422)
         end
 
-        xit "can delete an product_file" do
+        it "can delete a product_file" do
           api_delete :destroy, :id => product_product_file.id, :product_id => product.id
           expect(response.status).to eq(204)
           expect { product_product_file.reload }.to raise_error(ActiveRecord::RecordNotFound)
