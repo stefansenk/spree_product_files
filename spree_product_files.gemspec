@@ -8,20 +8,20 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_product_files'
   s.version     = SpreeProductFiles.version
-  s.summary     = 'Add extension summary here'
-  s.description = 'Add (optional) extension description here'
+  s.summary     = 'Add files to products'
+  s.description = 'Add file uploads to products within the admin and displays links to the files on the front end.'
   s.required_ruby_version = '>= 2.3.3'
 
-  s.author    = 'You'
-  s.email     = 'you@example.com'
-  s.homepage  = 'https://github.com/your-github-handle/spree_product_files'
+  s.author    = 'Stefan Senk'
+  # s.email     = 'you@example.com'
+  s.homepage  = 'https://github.com/stefansenk/spree_product_files'
   s.license = 'BSD-3-Clause'
 
   # s.files       = `git ls-files`.split("\n").reject { |f| f.match(/^spec/) && !f.match(/^spec\/fixtures/) }
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  spree_version = '>= 3.2.0', '< 4.0'
+  spree_version = '>= 3.2.0', '< 5.0'
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'spree_extension'
