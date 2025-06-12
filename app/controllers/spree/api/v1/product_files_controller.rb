@@ -1,9 +1,9 @@
 module Spree
   module Api
     module V1
-      class ProductFilesController < Spree::Api::BaseController
+      class ProductFilesController < Spree::Api::V2::BaseController
 
-        helper ::SpreeApiV1ProductFilesHelper
+        include ::SpreeApiV1ProductFilesHelper
 
         def index
           @product_files = scope.product_files.accessible_by(current_ability, :read)
@@ -29,7 +29,7 @@ module Spree
 
         def update
           @product_file = scope.product_files.accessible_by(current_ability, :update).find(params[:id])
-          if @product_file.update_attributes(product_file_params)
+          if @product_file.update(product_file_params)
             respond_with(@product_file, default_template: :show)
           else
             invalid_resource!(@product_file)

@@ -1,12 +1,13 @@
 require 'spec_helper'
+require 'rabl'
 
 module Spree
   describe Api::V1::ProductFilesController do
 
     # Work around for failing .v1.rabl templates - TODO Can this be removed?
-    before do
-      ActionView::Template.register_template_handler('v1.rabl', ActionView::Template::Handlers::Rabl)
-    end
+    # before do
+    #   ActionView::Template.register_template_handler('v1.rabl', ActionView::Template::Handlers::Rabl)
+    # end
 
     # From  spree/api/spec/support/controller_hacks.rb
     def api_get(action, params={}, session=nil, flash=nil)

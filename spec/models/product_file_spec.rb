@@ -16,11 +16,11 @@ describe Spree::ProductFile do
 
   context "display_name" do
     it "should use the alt name if it is populated" do
-      @product_file.update_attributes(alt: 'myfile1')
+      @product_file.update(alt: 'myfile1')
       expect(@product_file.display_name).to eq 'myfile1'
     end
     it "should use the attachment name if alt is blank" do
-      @product_file.update_attributes(alt: nil)
+      @product_file.update(alt: nil)
       expect(@product_file.display_name).to eq 'thinking-cat.jpg'
     end
   end

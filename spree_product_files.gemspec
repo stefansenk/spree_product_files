@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency 'spree_extension'
+  s.add_dependency 'rabl'
 
   s.add_development_dependency 'appraisal'
   s.add_development_dependency 'awesome_print'
@@ -41,7 +42,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'sqlite3', '~> 1.3.6'
+  s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'puma'
   s.add_development_dependency 'spree_frontend'
+  s.add_development_dependency 'actionmailer'
 end
